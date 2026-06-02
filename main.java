@@ -13,8 +13,9 @@ public class main {
             System.out.println("M - Multiply"); 
             System.out.println("D - Divide"); 
             System.out.println("X - Exit"); 
+            System.out.println("P - Power (first number raised to the second number)"); 
             String operation = sc.nextLine(); 
-            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X")) {
+            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P")) {
                 System.out.println("Please give a valid operation using the legend!"); 
                 operation = sc.nextLine(); 
             }
@@ -49,6 +50,10 @@ public class main {
                 case "D" -> {
                     operation = "/";
                     output = calc.operations.divide(num1, num2);
+                }
+                case "P" -> {
+                    operation = "^";
+                    output = calc.operations.power(num1, num2);
                 }
                 default -> {
                     operation = "+"; 
