@@ -1,0 +1,21 @@
+Operations to add: 
+Mod (%)
+Power (^)
+Root (rt)
+Sin/Cos/Tan
+log/ln
+Factorial
+Reciprocal 
+Absolute Value 
+pi 
+Euler number (e)
+
+
+
+General Things to add: 
+try-catch for division and root (dividing by zero, and rt of negative number)
+More than two elements to use for operations
+PEMDAS 
+memory (remembering past computations)
+separator function so that user can input calculation in on line
+
