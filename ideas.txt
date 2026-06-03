@@ -1,11 +1,11 @@
 Operations to add: 
 Mod (%)
 Power (^) - done (note: using double type for numbers so uses approximation for big numbers, can change to BigInteger for exact integers but then we can't have decimal exponents)
-Root (rt)
+Root (rt) - done
 Sin/Cos/Tan
 log/ln
 Factorial - done
-Reciprocal - done (but could be better)
+Reciprocal - done (but could be better - update needed: if doubles are given for num and denom, we get the right answer)
 Absolute Value 
 pi 
 Euler number (e)
@@ -19,4 +19,5 @@ PEMDAS
 memory (remembering past computations)
 separator function so that user can input calculation in on line
 make inputs not case sensitive
+more error outputs when wrong types are inputted by user
 

@@ -8,7 +8,7 @@ public class main {
         Scanner sc = new Scanner(System.in); 
         System.out.println("Welcome! I heard you got some calculations to do! Weird, you don't look like a math person! Anyways, let's get started!");
         while (more) {
-            System.out.println("Specify which operation you would like for me to perform!"); 
+            System.out.println("Specify which operation you would like for me to perform! (Case Sensitive)"); 
             System.out.println("A - Add"); 
             System.out.println("S - Subtract"); 
             System.out.println("M - Multiply"); 
@@ -16,9 +16,10 @@ public class main {
             System.out.println("X - Exit"); 
             System.out.println("P - Power (first number raised to the second number)"); 
             System.out.println("F - Factorial (one input)"); 
-            System.out.println("R - Reciprocal (if you need the recipical of an integer, input the integer as numerator and 1 as numberator");
+            System.out.println("R - Reciprocal (if you need the recipical of an integer, input the integer as numerator and 1 as numberator)");
+            System.out.println("r - Root");
             String operation = sc.nextLine(); 
-            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R")) {
+            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r")) {
                 System.out.println("Please give a valid operation using the legend!"); 
                 operation = sc.nextLine(); 
             }
@@ -123,9 +124,9 @@ public class main {
                     } 
                 }
                 case "R" -> {
-                    System.out.println("What is the numerator"); 
+                    System.out.println("What is the numerator?"); 
                     int num1 = sc.nextInt();
-                    System.out.println("What is the denominator"); 
+                    System.out.println("What is the denominator?"); 
                     int num2 = sc.nextInt(); 
 
                     operation = "^-1";
@@ -137,21 +138,20 @@ public class main {
                         Thread.currentThread().interrupt(); 
                     } 
                 }
-                default -> {
-                    System.out.println("What is the first number?"); 
-                    double num1 = sc.nextDouble(); 
-
-                    System.out.println("What is the second number?");
-                    double num2 = sc.nextDouble(); 
-                    operation = "+"; 
-                    output = calc.operations.add(num1, num2); 
-                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output);
+                case "r" -> {
+                    System.out.println("What is the base?"); 
+                    double num1 = sc.nextInt();
+                    System.out.println("What is the root"); 
+                    double num2 = sc.nextInt(); 
+                    operation = "rt";
+                    double output4 = calc.operations.root(num1, num2); 
+                    System.out.println(num2 + "rt( " + num1 + " )" + " = " + output4);
                     try {
                         Thread.sleep(1000); 
                     } catch (Exception e) {
                         Thread.currentThread().interrupt(); 
                     } 
-                } 
+                }
             }
         }
         sc.close(); 

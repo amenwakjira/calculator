@@ -35,4 +35,8 @@ public class operations {
     public static String reciprocal(int num1, int num2) {
         return num2 + "/" + num1; 
     }
+
+    public static double root (double num1, double num2) {
+        return Math.pow(num1, 1/num2); 
+    }
 }
