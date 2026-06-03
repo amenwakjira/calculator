@@ -31,4 +31,8 @@ public class operations {
         }
         return total; 
     }
+
+    public static String reciprocal(int num1, int num2) {
+        return num2 + "/" + num1; 
+    }
 }

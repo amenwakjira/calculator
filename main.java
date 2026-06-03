@@ -16,8 +16,9 @@ public class main {
             System.out.println("X - Exit"); 
             System.out.println("P - Power (first number raised to the second number)"); 
             System.out.println("F - Factorial (one input)"); 
+            System.out.println("R - Reciprocal (if you need the recipical of an integer, input the integer as numerator and 1 as numberator");
             String operation = sc.nextLine(); 
-            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F")) {
+            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R")) {
                 System.out.println("Please give a valid operation using the legend!"); 
                 operation = sc.nextLine(); 
             }
@@ -115,6 +116,21 @@ public class main {
                     operation = "^";
                     output = calc.operations.power(num1, num2);
                     System.out.println(num1 + " " + operation + " " + num2 + " is " + output);
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    } 
+                }
+                case "R" -> {
+                    System.out.println("What is the numerator"); 
+                    int num1 = sc.nextInt();
+                    System.out.println("What is the denominator"); 
+                    int num2 = sc.nextInt(); 
+
+                    operation = "^-1";
+                    String output3 = calc.operations.reciprocal(num1, num2); 
+                    System.out.println("(" + num1 + " / " + num2 + ")" + operation  + " is " + output3);
                     try {
                         Thread.sleep(1000); 
                     } catch (Exception e) {
