@@ -1,4 +1,5 @@
 package calc; 
+import java.math.BigInteger;
 import java.util.*;  
 
 public class main {
@@ -32,8 +33,14 @@ public class main {
                 System.out.println("Enter your number:"); 
                 operation = "!";
                 int num = sc.nextInt(); 
-                output = calc.operations.factorial(num); 
-                System.out.println(num + "!" + " is " + output); 
+                BigInteger output2 = calc.operations.factorial(num); 
+                System.out.println(num + operation + " is " + output2); 
+                try {
+                    Thread.sleep(1000); 
+                } catch (Exception e) {
+                    Thread.currentThread().interrupt(); 
+                }
+                break; 
             }
 
             switch (operation) {
@@ -46,6 +53,11 @@ public class main {
                     operation = "+";
                     output = calc.operations.add(num1, num2);
                     System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
                 }
                 case "S" -> {
                     System.out.println("What is the first number?"); 
@@ -55,7 +67,12 @@ public class main {
                     double num2 = sc.nextDouble(); 
                     operation = "-";
                     output = calc.operations.subtract(num1, num2);
-                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output);
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
                 }
                 case "M" -> {
                     System.out.println("What is the first number?"); 
@@ -65,7 +82,12 @@ public class main {
                     double num2 = sc.nextDouble(); 
                     operation = "*";
                     output = calc.operations.multiply(num1, num2);
-                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output);
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
                 }
                 case "D" -> {
                     System.out.println("What is the first number?"); 
@@ -76,6 +98,11 @@ public class main {
                     operation = "/";
                     output = calc.operations.divide(num1, num2);
                     System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
                 }
                 case "P" -> {
                     System.out.println("What is the first number?"); 
@@ -85,7 +112,12 @@ public class main {
                     double num2 = sc.nextDouble(); 
                     operation = "^";
                     output = calc.operations.power(num1, num2);
-                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output);
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    } 
                 }
                 default -> {
                     System.out.println("What is the first number?"); 
@@ -95,7 +127,12 @@ public class main {
                     double num2 = sc.nextDouble(); 
                     operation = "+"; 
                     output = calc.operations.add(num1, num2); 
-                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output);
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    } 
                 } 
             }
         }

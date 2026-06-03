@@ -4,7 +4,7 @@ Power (^) - done
 Root (rt)
 Sin/Cos/Tan
 log/ln
-Factorial - done
+Factorial
 Reciprocal 
 Absolute Value 
 pi 
