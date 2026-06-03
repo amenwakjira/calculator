@@ -36,7 +36,11 @@ public class operations {
         return num2 + "/" + num1; 
     }
 
-    public static double root (double num1, double num2) {
-        return Math.pow(num1, 1/num2); 
+    public static double root (double num1, int num2) {
+        if (num1 < 0) {
+            num1 = -num1;
+            return - Math.pow(num1, 1.0/num2); 
+        }
+        return Math.pow(num1, 1.0/num2); 
     }
 }

@@ -1,7 +1,7 @@
 Operations to add: 
 Mod (%)
 Power (^) - done (note: using double type for numbers so uses approximation for big numbers, can change to BigInteger for exact integers but then we can't have decimal exponents)
-Root (rt) - done
+Root (rt) - done (added conditions)
 Sin/Cos/Tan
 log/ln
 Factorial - done

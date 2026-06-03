@@ -140,9 +140,29 @@ public class main {
                 }
                 case "r" -> {
                     System.out.println("What is the base?"); 
-                    double num1 = sc.nextInt();
+                    double num1 = sc.nextDouble();
                     System.out.println("What is the root"); 
-                    double num2 = sc.nextInt(); 
+                    int num2 = sc.nextInt(); 
+                    if (num2 % 1 != 0) {
+                        System.out.println("Make sure your root is an integer or we won't get anywhere lol."); 
+                        try {
+                            Thread.sleep(1000); 
+                        } catch (Exception e) {
+                            Thread.currentThread().interrupt(); 
+                        } 
+                        continue; 
+                    }
+
+                    if (num1 < 0 && num2 % 2 == 0) {
+                        System.out.println("Girl, negative base and even root?! you can't do that!"); 
+                        try {
+                            Thread.sleep(1000); 
+                        } catch (Exception e) {
+                            Thread.currentThread().interrupt(); 
+                        } 
+                        continue; 
+                    } 
+
                     operation = "rt";
                     double output4 = calc.operations.root(num1, num2); 
                     System.out.println(num2 + "rt( " + num1 + " )" + " = " + output4);
