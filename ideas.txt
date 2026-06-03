@@ -5,7 +5,7 @@ Root (rt)
 Sin/Cos/Tan
 log/ln
 Factorial - done
-Reciprocal
+Reciprocal - done (but could be better)
 Absolute Value 
 pi 
 Euler number (e)
