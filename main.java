@@ -14,54 +14,90 @@ public class main {
             System.out.println("D - Divide"); 
             System.out.println("X - Exit"); 
             System.out.println("P - Power (first number raised to the second number)"); 
+            System.out.println("F - Factorial (one input)"); 
             String operation = sc.nextLine(); 
-            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P")) {
+            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F")) {
                 System.out.println("Please give a valid operation using the legend!"); 
                 operation = sc.nextLine(); 
             }
 
-            if (operation.contains("X")) {
+            double output = 0; 
+
+            if (operation.contentEquals("X")) {
                 System.out.println("That was all for this calculator! See you next time!");  
                 more = false;
                 sc.close(); 
                 break; 
+            } else if (operation.contentEquals("F")) {
+                System.out.println("Enter your number:"); 
+                operation = "!";
+                int num = sc.nextInt(); 
+                output = calc.operations.factorial(num); 
+                System.out.println(num + "!" + " is " + output); 
             }
 
-            System.out.println("What is the first number?"); 
-            double num1 = sc.nextDouble(); 
-
-            System.out.println("What is the second number?");
-            double num2 = sc.nextDouble(); 
-
-            double output = 0; 
             switch (operation) {
                 case "A" -> {
+                    System.out.println("What is the first number?"); 
+                    double num1 = sc.nextDouble(); 
+
+                    System.out.println("What is the second number?");
+                    double num2 = sc.nextDouble(); 
                     operation = "+";
                     output = calc.operations.add(num1, num2);
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
                 }
                 case "S" -> {
+                    System.out.println("What is the first number?"); 
+                    double num1 = sc.nextDouble(); 
+
+                    System.out.println("What is the second number?");
+                    double num2 = sc.nextDouble(); 
                     operation = "-";
                     output = calc.operations.subtract(num1, num2);
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
                 }
                 case "M" -> {
+                    System.out.println("What is the first number?"); 
+                    double num1 = sc.nextDouble(); 
+
+                    System.out.println("What is the second number?");
+                    double num2 = sc.nextDouble(); 
                     operation = "*";
                     output = calc.operations.multiply(num1, num2);
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
                 }
                 case "D" -> {
+                    System.out.println("What is the first number?"); 
+                    double num1 = sc.nextDouble(); 
+
+                    System.out.println("What is the second number?");
+                    double num2 = sc.nextDouble(); 
                     operation = "/";
                     output = calc.operations.divide(num1, num2);
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
                 }
                 case "P" -> {
+                    System.out.println("What is the first number?"); 
+                    double num1 = sc.nextDouble(); 
+
+                    System.out.println("What is the second number?");
+                    double num2 = sc.nextDouble(); 
                     operation = "^";
                     output = calc.operations.power(num1, num2);
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
                 }
                 default -> {
+                    System.out.println("What is the first number?"); 
+                    double num1 = sc.nextDouble(); 
+
+                    System.out.println("What is the second number?");
+                    double num2 = sc.nextDouble(); 
                     operation = "+"; 
                     output = calc.operations.add(num1, num2); 
+                    System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
                 } 
             }
-
-            System.out.println(num1 + " " + operation + " " + num2 + " is " + output); 
         }
         sc.close(); 
     }

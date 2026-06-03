@@ -1,10 +1,10 @@
 Operations to add: 
 Mod (%)
-Power (^)
+Power (^) - done
 Root (rt)
 Sin/Cos/Tan
 log/ln
-Factorial
+Factorial - done
 Reciprocal 
 Absolute Value 
 pi 

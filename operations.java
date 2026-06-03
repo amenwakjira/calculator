@@ -20,4 +20,12 @@ public class operations {
     public static double power(double num1, double num2) {
         return Math.pow(num1, num2);
     }
+
+    public static double factorial(int num) {
+        int total = 1; 
+        for (int i = num; i >= 1; i--) {
+            total = total * i; 
+        }
+        return total; 
+    }
 }
