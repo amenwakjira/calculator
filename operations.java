@@ -1,5 +1,4 @@
 package calc;
-
 import java.math.BigInteger;
 
 public class operations {
@@ -24,11 +23,11 @@ public class operations {
         return Math.pow(num1, num2);
     }
 
-    public static BigInteger factorial(int num) {
+    public static BigInteger factorial(BigInteger num) {
         BigInteger total = BigInteger.ONE; 
-        for (int i = num; i > 0; i--) {
-            total = total.multiply(BigInteger.valueOf(i)); 
-            System.out.println(total); 
+        while (num != BigInteger.valueOf(0)) {
+            total = total.multiply(num); 
+            num = num.subtract(BigInteger.ONE); 
         }
         return total; 
     }

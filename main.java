@@ -32,7 +32,7 @@ public class main {
             } else if (operation.contentEquals("F")) {
                 System.out.println("Enter your number:"); 
                 operation = "!";
-                int num = sc.nextInt(); 
+                BigInteger num = sc.nextBigInteger(); 
                 BigInteger output2 = calc.operations.factorial(num); 
                 System.out.println(num + operation + " is " + output2); 
                 try {
