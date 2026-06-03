@@ -4,8 +4,8 @@ Power (^) - done
 Root (rt)
 Sin/Cos/Tan
 log/ln
-Factorial
-Reciprocal 
+Factorial - working on this (only works up till 21)
+Reciprocal
 Absolute Value 
 pi 
 Euler number (e)
