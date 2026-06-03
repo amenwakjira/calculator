@@ -29,7 +29,9 @@ public class main {
                 more = false;
                 sc.close(); 
                 break; 
-            } else if (operation.contentEquals("F")) {
+            } 
+            
+            if (operation.contentEquals("F")) { 
                 System.out.println("Enter your number:"); 
                 operation = "!";
                 BigInteger num = sc.nextBigInteger(); 
@@ -40,7 +42,7 @@ public class main {
                 } catch (Exception e) {
                     Thread.currentThread().interrupt(); 
                 }
-                break; 
+                continue; 
             }
 
             switch (operation) {

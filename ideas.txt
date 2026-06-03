@@ -1,10 +1,10 @@
 Operations to add: 
 Mod (%)
-Power (^) - done
+Power (^) - done (note: using double type for numbers so uses approximation for big numbers, can change to BigInteger for exact integers but then we can't have decimal exponents)
 Root (rt)
 Sin/Cos/Tan
 log/ln
-Factorial - working on this (only works up till 21)
+Factorial - done
 Reciprocal
 Absolute Value 
 pi 
@@ -18,4 +18,5 @@ More than two elements to use for operations
 PEMDAS 
 memory (remembering past computations)
 separator function so that user can input calculation in on line
+make inputs not case sensitive
 
