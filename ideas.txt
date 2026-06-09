@@ -4,7 +4,7 @@ Power (^) - done (note: using double type for numbers so uses approximation for 
 Root (rt) - done (added conditions)
 Sin/Cos/Tan
 log/ln
-Factorial - done (fix for when negative input is given)
+Factorial - done
 Reciprocal - done (but could be better - update needed: if doubles are given for num and denom, we get the right answer)
 Absolute Value 
 pi 
