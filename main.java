@@ -37,6 +37,15 @@ public class main {
                 System.out.println("Enter your number:"); 
                 operation = "!";
                 BigInteger num = sc.nextBigInteger(); 
+                while (num.compareTo(BigInteger.ZERO) < 0) {
+                    System.out.println("How would I be able to calculate the factorial of a negative?! Try again with a positive number.");
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    } 
+                    num = sc.nextBigInteger(); 
+                }
                 BigInteger output2 = calc.operations.factorial(num); 
                 System.out.println(num + operation + " is " + output2); 
                 try {
