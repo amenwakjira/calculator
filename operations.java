@@ -51,4 +51,8 @@ public class operations {
         }
         return num; 
     }
+
+    public static double mod(double dividend, double divisor) {
+        return dividend % divisor; 
+    }
 }

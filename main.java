@@ -19,8 +19,11 @@ public class main {
             System.out.println("R - Reciprocal (if you need the recipical of an integer, input the integer as numerator and 1 as numberator)");
             System.out.println("r - Root");
             System.out.println("Abs - Absolute Value"); 
+            System.out.println("Mod - Modulo"); 
+            System.out.println(); 
+            
             String operation = sc.nextLine(); 
-            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r") && !operation.contentEquals("Abs")) {
+            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r") && !operation.contentEquals("Abs") && !operation.contentEquals("Mod")) {
                 System.out.println("Please give a valid operation using the legend!"); 
                 operation = sc.nextLine(); 
             }
@@ -188,6 +191,21 @@ public class main {
                     operation = "|";
                     output = calc.operations.absVal(num); 
                     System.out.println(operation + num + operation + " is " +  output);
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
+                }
+                case "Mod" -> {
+                    System.out.println("What is the dividend?"); 
+                    double dividend = sc.nextDouble(); 
+
+                    System.out.println("What is the divisor?");
+                    double divisor = sc.nextDouble(); 
+                    operation = "%";
+                    output = calc.operations.mod(dividend, divisor);
+                    System.out.println(dividend + " " + operation + " " + divisor + " is " + output); 
                     try {
                         Thread.sleep(1000); 
                     } catch (Exception e) {
