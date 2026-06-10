@@ -18,8 +18,9 @@ public class main {
             System.out.println("F - Factorial (one input)"); 
             System.out.println("R - Reciprocal (if you need the recipical of an integer, input the integer as numerator and 1 as numberator)");
             System.out.println("r - Root");
+            System.out.println("Abs - Absolute Value"); 
             String operation = sc.nextLine(); 
-            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r")) {
+            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r") && !operation.contentEquals("Abs")) {
                 System.out.println("Please give a valid operation using the legend!"); 
                 operation = sc.nextLine(); 
             }
@@ -179,7 +180,19 @@ public class main {
                         Thread.sleep(1000); 
                     } catch (Exception e) {
                         Thread.currentThread().interrupt(); 
-                    } 
+                    }
+                }
+                case "Abs" -> {
+                    System.out.println("What is the number?"); 
+                    double num = sc.nextDouble(); 
+                    operation = "|";
+                    output = calc.operations.absVal(num); 
+                    System.out.println(operation + num + operation + " is " +  output);
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
                 }
             }
         }

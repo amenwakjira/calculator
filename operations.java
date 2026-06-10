@@ -43,4 +43,12 @@ public class operations {
         }
         return Math.pow(num1, 1.0/num2); 
     }
+
+    public static double absVal(double num) {
+        // can use Math.abs() but also
+        if (num < 0) {
+            return num - num - num;
+        }
+        return num; 
+    }
 }
