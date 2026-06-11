@@ -3,7 +3,7 @@ Mod (%) - done
 Power (^) - done (note: using double type for numbers so uses approximation for big numbers, can change to BigInteger for exact integers but then we can't have decimal exponents)
 Root (rt) - done (added conditions)
 Sin/Cos/Tan
-log/ln
+log/ln - done with log working on ln
 Factorial - done
 Reciprocal - done (but could be better - update needed: if doubles are given for num and denom, we get the right answer)
 Absolute Value - done

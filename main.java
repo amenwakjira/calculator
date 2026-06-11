@@ -20,10 +20,11 @@ public class main {
             System.out.println("r - Root");
             System.out.println("Abs - Absolute Value"); 
             System.out.println("Mod - Modulo"); 
+            System.out.println("Log - Logrithm (for natural log use e as input for base)"); 
             System.out.println(); 
             
             String operation = sc.nextLine(); 
-            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r") && !operation.contentEquals("Abs") && !operation.contentEquals("Mod")) {
+            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r") && !operation.contentEquals("Abs") && !operation.contentEquals("Mod") && !operation.contentEquals("Log")) {
                 System.out.println("Please give a valid operation using the legend!"); 
                 operation = sc.nextLine(); 
             }
@@ -211,6 +212,28 @@ public class main {
                     } catch (Exception e) {
                         Thread.currentThread().interrupt(); 
                     }
+                }
+                case "Log" -> {
+                    System.out.println("What is the base?"); 
+                    double base = sc.nextDouble(); 
+                    while (base <= 0 || base == 1) {
+                        System.out.println("Now, you know you need a positive real number for the base (NOT 1), so why would you give me this?"); 
+                        base = sc.nextDouble(); 
+                    }
+                    System.out.println("What is the argument for the logritham?");
+                    double arg = sc.nextDouble(); 
+                    while (arg <= 0) {
+                        System.out.println("Postive. Real. Number."); 
+                        arg = sc.nextDouble(); 
+                    }
+                    operation = "Log";
+                    output = calc.operations.log(base, arg); 
+                    System.out.println(operation + " ( " + arg + " ) " + " is " + output + " (base " + base + ").");
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    } 
                 }
             }
         }

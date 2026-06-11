@@ -55,4 +55,9 @@ public class operations {
     public static double mod(double dividend, double divisor) {
         return dividend % divisor; 
     }
+
+    public static double log(double base, double arg) {
+        // log_b(x) = ln(x) / ln(b)
+        return Math.log(arg) / Math.log(base); 
+    }
 }
