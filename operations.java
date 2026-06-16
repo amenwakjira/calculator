@@ -2,6 +2,7 @@ package calc;
 import java.math.BigInteger;
 
 public class operations {
+    public static double e = Math.E; 
     
     public static double add(double num1, double num2) {
         return num1 + num2; 

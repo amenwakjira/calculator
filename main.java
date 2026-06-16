@@ -20,7 +20,7 @@ public class main {
             System.out.println("r - Root");
             System.out.println("Abs - Absolute Value"); 
             System.out.println("Mod - Modulo"); 
-            System.out.println("Log - Logrithm (for natural log use e as input for base)"); 
+            System.out.println("Log - Logrithm (for ln, use -1 as input for base)"); 
             System.out.println(); 
             
             String operation = sc.nextLine(); 
@@ -216,10 +216,14 @@ public class main {
                 case "Log" -> {
                     System.out.println("What is the base?"); 
                     double base = sc.nextDouble(); 
-                    while (base <= 0 || base == 1) {
+                    while (base < -1 || base == 1) {
                         System.out.println("Now, you know you need a positive real number for the base (NOT 1), so why would you give me this?"); 
                         base = sc.nextDouble(); 
                     }
+                    if (base == -1) {
+                        base = Math.E; 
+                    } 
+
                     System.out.println("What is the argument for the logritham?");
                     double arg = sc.nextDouble(); 
                     while (arg <= 0) {
@@ -228,7 +232,12 @@ public class main {
                     }
                     operation = "Log";
                     output = calc.operations.log(base, arg); 
-                    System.out.println(operation + " ( " + arg + " ) " + " is " + output + " (base " + base + ").");
+                    if (base == Math.E) {
+                        System.out.println(operation + " ( " + arg + " ) " + " is " + output + " (base " + " e" + ").");
+                    } else {
+                        System.out.println(operation + " ( " + arg + " ) " + " is " + output + " (base " + base + ").");
+                    }
+                    
                     try {
                         Thread.sleep(1000); 
                     } catch (Exception e) {
