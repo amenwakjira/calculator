@@ -7,8 +7,6 @@ log/ln - done
 Factorial - done
 Reciprocal - done (but could be better - update needed: if doubles are given for num and denom, we get the right answer)
 Absolute Value - done
-pi 
-Euler number (e)
 
 
 
