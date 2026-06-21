@@ -21,10 +21,14 @@ public class main {
             System.out.println("Abs - Absolute Value"); 
             System.out.println("Mod - Modulo"); 
             System.out.println("Log - Logrithm (for ln, use -1 as input for base)"); 
+            System.out.println("SIN - Sine");
+            System.out.println("COS - Cosine");
+            System.out.println("TAN - Sine");
             System.out.println(); 
             
             String operation = sc.nextLine(); 
-            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r") && !operation.contentEquals("Abs") && !operation.contentEquals("Mod") && !operation.contentEquals("Log")) {
+            while (!operation.contentEquals("A") && !operation.contentEquals("S") && !operation.contentEquals("M") && !operation.contentEquals("D") && !operation.contentEquals("X") && !operation.contentEquals("P") && !operation.contentEquals("F") && !operation.contentEquals("R") && !operation.contentEquals("r") && !operation.contentEquals("Abs") 
+                && !operation.contentEquals("Mod") && !operation.contentEquals("Log") && !operation.contentEquals("SIN") && !operation.contentEquals("COS") && !operation.contentEquals("TAN")) {
                 System.out.println("Please give a valid operation using the legend!"); 
                 operation = sc.nextLine(); 
             }
@@ -243,6 +247,93 @@ public class main {
                     } catch (Exception e) {
                         Thread.currentThread().interrupt(); 
                     } 
+                }
+                case "SIN" -> {
+                    System.out.println("Degrees (D) or Radians (R)?"); 
+                    String type = sc.nextLine(); 
+                    while (!type.contentEquals("D") && !type.contentEquals("R")) {
+                        System.out.println("I gave you the two possible options, didn't I? (D or R)");
+                        type = sc.nextLine(); 
+                    }
+
+                    double displayOutput = 0.0; 
+                    if (type.contentEquals("D")) {
+                        System.out.println("What is you're input? (Any real number is fine)"); 
+                        double input = sc.nextDouble(); 
+                        double realInput = input * (Math.PI / 180); 
+                        displayOutput = input; 
+                        output = calc.operations.sincostan("SIN", realInput);
+                    } else {
+                        System.out.println("What is you're input? (Any real number is fine)"); 
+                        double input = sc.nextDouble(); 
+                        displayOutput = input; 
+                        output = calc.operations.sincostan("SIN", input);
+                    }
+                    operation = "Sin";
+                    System.out.println(operation + "( " + displayOutput + " ) " + "is " + output); 
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
+                }
+                case "COS" -> {
+                    System.out.println("Degrees (D) or Radians (R)?"); 
+                    String type = sc.nextLine(); 
+                    while (!type.contentEquals("D") && !type.contentEquals("R")) {
+                        System.out.println("I gave you the two possible options, didn't I? (D or R)");
+                        type = sc.nextLine(); 
+                    }
+
+                    double displayOutput = 0.0; 
+                    if (type.contentEquals("D")) {
+                        System.out.println("What is you're input? (Any real number is fine)"); 
+                        double input = sc.nextDouble(); 
+                        double realInput = input * (Math.PI / 180); 
+                        displayOutput = input; 
+                        output = calc.operations.sincostan("COS", realInput);
+                    } else {
+                        System.out.println("What is you're input? (Any real number is fine)"); 
+                        double input = sc.nextDouble(); 
+                        displayOutput = input; 
+                        output = calc.operations.sincostan("COS", input);
+                    }
+                    operation = "Cos";
+                    System.out.println(operation + "( " + displayOutput + " ) " + "is " + output); 
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
+                }
+                case "TAN" -> {
+                    System.out.println("Degrees (D) or Radians (R)?"); 
+                    String type = sc.nextLine(); 
+                    while (!type.contentEquals("D") && !type.contentEquals("R")) {
+                        System.out.println("I gave you the two possible options, didn't I? (D or R)");
+                        type = sc.nextLine(); 
+                    }
+
+                    double displayOutput = 0.0; 
+                    if (type.contentEquals("D")) {
+                        System.out.println("What is you're input? (Any real number is fine)"); 
+                        double input = sc.nextDouble(); 
+                        double realInput = input * (Math.PI / 180); 
+                        displayOutput = input; 
+                        output = calc.operations.sincostan("TAN", realInput);
+                    } else {
+                        System.out.println("What is you're input? (Any real number is fine)"); 
+                        double input = sc.nextDouble(); 
+                        displayOutput = input; 
+                        output = calc.operations.sincostan("TAN", input);
+                    }
+                    operation = "Tan";
+                    System.out.println(operation + "( " + displayOutput + " ) " + "is " + output); 
+                    try {
+                        Thread.sleep(1000); 
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt(); 
+                    }
                 }
             }
         }

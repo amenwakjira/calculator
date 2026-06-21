@@ -61,4 +61,13 @@ public class operations {
         // log_b(x) = ln(x) / ln(b)
         return Math.log(arg) / Math.log(base); 
     }
+
+    public static double sincostan(String operation, double input) {
+        if (operation.contentEquals("SIN")) {
+            return Math.sin(input); 
+        } else if (operation.contentEquals("COS")) {
+            return Math.cos(input); 
+        }
+        return Math.tan(input); 
+    }
 }
