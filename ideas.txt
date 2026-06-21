@@ -2,7 +2,7 @@ Operations to add:
 Mod (%) - done
 Power (^) - done (note: using double type for numbers so uses approximation for big numbers, can change to BigInteger for exact integers but then we can't have decimal exponents)
 Root (rt) - done (added conditions)
-Sin/Cos/Tan - not tested
+Sin/Cos/Tan - done
 log/ln - done 
 Factorial - done
 Reciprocal - done (but could be better - update needed: if doubles are given for num and denom, we get the right answer)
@@ -11,7 +11,7 @@ Absolute Value - done
 
 
 General Things to add: 
-try-catch for division and root (dividing by zero, and rt of negative number)
+try-catch for invalid inputs for all operations 
 More than two elements to use for operations
 PEMDAS 
 memory (remembering past computations)

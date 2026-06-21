@@ -13,7 +13,6 @@ public class main {
             System.out.println("S - Subtract"); 
             System.out.println("M - Multiply"); 
             System.out.println("D - Divide"); 
-            System.out.println("X - Exit"); 
             System.out.println("P - Power (first number raised to the second number)"); 
             System.out.println("F - Factorial (one input)"); 
             System.out.println("R - Reciprocal (if you need the recipical of an integer, input the integer as numerator and 1 as numberator)");
@@ -24,6 +23,7 @@ public class main {
             System.out.println("SIN - Sine");
             System.out.println("COS - Cosine");
             System.out.println("TAN - Sine");
+            System.out.println("X - Exit"); 
             System.out.println(); 
             
             String operation = sc.nextLine(); 
@@ -270,7 +270,7 @@ public class main {
                         output = calc.operations.sincostan("SIN", input);
                     }
                     operation = "Sin";
-                    System.out.println(operation + "( " + displayOutput + " ) " + "is " + output); 
+                    System.out.println(operation + "(" + displayOutput + ") " + "is " + output); 
                     try {
                         Thread.sleep(1000); 
                     } catch (Exception e) {
@@ -299,7 +299,7 @@ public class main {
                         output = calc.operations.sincostan("COS", input);
                     }
                     operation = "Cos";
-                    System.out.println(operation + "( " + displayOutput + " ) " + "is " + output); 
+                    System.out.println(operation + "(" + displayOutput + ") " + "is " + output); 
                     try {
                         Thread.sleep(1000); 
                     } catch (Exception e) {
@@ -328,7 +328,7 @@ public class main {
                         output = calc.operations.sincostan("TAN", input);
                     }
                     operation = "Tan";
-                    System.out.println(operation + "( " + displayOutput + " ) " + "is " + output); 
+                    System.out.println(operation + "(" + displayOutput + ") " + "is " + output); 
                     try {
                         Thread.sleep(1000); 
                     } catch (Exception e) {
