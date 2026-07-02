@@ -29,17 +29,21 @@ public class update {
         Stack<String> operations = new Stack<>(); 
         String noSpace = input.replaceAll("\\s+", ""); 
 
-        for (int i = 0; i < input.length(); i++) {
-            char token = noSpace.charAt(i); 
+        for (int i = 0; i < noSpace.length(); i++) {
+            char token = noSpace.charAt(i);
             if (Character.isDigit(token)) {
                 output.add(token + ""); 
             } else {
-                int topValue = Precedence.get(operations.peek()); 
-                while (topValue > Precedence.get(token)) { 
-                    output.add(operations.pop()); 
-                    topValue = Precedence.get(operations.peek()); 
+                if (!operations.isEmpty()) {
+                    int topValue = Precedence.get(operations.peek()); 
+                    while (topValue > Precedence.get(token + "")) { 
+                        output.add(operations.pop()); 
+                        topValue = Precedence.get(operations.peek()); 
+                    }
+                    operations.add(token + "");
+                } else {
+                    operations.add(token + ""); 
                 }
-                operations.add(token + "");
             }
         }
 
