@@ -4,15 +4,6 @@ import java.util.*;
 
 public class update {
 
-    // private static class Element {
-    //     String key; 
-    //     Integer value; 
-
-    //     Element (String key, Integer value) {
-    //         this.key = key; 
-    //         this.value = value; 
-    //     }
-    // }
 
     public static final HashMap<String, Integer> Precedence = new HashMap<>(); 
 
@@ -32,13 +23,23 @@ public class update {
         for (int i = 0; i < noSpace.length(); i++) {
             char token = noSpace.charAt(i);
             if (Character.isDigit(token)) {
-                output.add(token + ""); 
+                StringBuilder sb =  new StringBuilder(); 
+                sb.append(token); 
+                int skipto = i; 
+                while (skipto < noSpace.length() - 1 && Character.isDigit(noSpace.charAt(skipto + 1))) {
+                    sb.append(noSpace.charAt(skipto + 1)); 
+                    skipto++; 
+                }
+                i = skipto;
+                System.out.println(sb); 
+                output.add(sb + ""); 
             } else {
                 if (!operations.isEmpty()) {
+                    System.out.println(operations.peek()); 
                     int topValue = Precedence.get(operations.peek()); 
-                    while (topValue > Precedence.get(token + "")) { 
-                        output.add(operations.pop()); 
+                    while (topValue > Precedence.get(token + "") && !operations.isEmpty()) { 
                         topValue = Precedence.get(operations.peek()); 
+                        output.add(operations.pop()); 
                     }
                     operations.add(token + "");
                 } else {
