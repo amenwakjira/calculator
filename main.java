@@ -9,6 +9,9 @@ public class main {
         String input = sc.nextLine(); 
         System.out.println(update.RPN_Form(input)); 
 
+        double answer = update.eval_RPN(update.RPN_Form(input)); 
+        System.out.println(answer); 
+
         // boolean more = true;
         // Scanner sc = new Scanner(System.in); 
         // System.out.println("Welcome! I heard you got some calculations to do! Weird, you don't look like a math person! Anyways, let's get started!");

@@ -54,4 +54,50 @@ public class update {
         }
         return output; 
     }
+
+    public static double eval_RPN (Queue<String> rpn) {
+        Stack<Double> solver = new Stack<>();
+        while (!rpn.isEmpty()) {
+            if (isNum(rpn.peek())) {
+                solver.add(Double.parseDouble(rpn.poll()));
+            } else {
+                if (!solver.isEmpty()) {
+                    double unitOne = solver.pop();
+                    double unitTwo = solver.pop(); 
+                    switch (rpn.poll()) {
+                        case "+" -> { 
+                            solver.push(unitOne + unitTwo); 
+                            break; 
+                        }
+                        case "-" -> { 
+                            solver.push(unitOne - unitTwo);
+                            break; 
+                        }
+                        case "*" -> {
+                            solver.push(unitOne * unitTwo); 
+                            break; 
+                        }
+                        case "/" -> { 
+                            solver.push(unitOne / unitTwo); 
+                            break; 
+                        } 
+                    }
+                }
+            }
+        } 
+        return solver.peek(); 
+    }
+
+    private static boolean isNum (String str) {
+        if (str == null) {
+            return false; 
+        }
+
+        try {
+            Double.parseDouble(str); 
+            return true; 
+        } catch (NumberFormatException nfe) {
+            return false; 
+        }
+    }
 }
