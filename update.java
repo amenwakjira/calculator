@@ -23,10 +23,10 @@ public class update {
 
         for (int i = 0; i < noSpace.length(); i++) {
             int currentSpot = i; 
-            if (Character.isDigit(input.charAt(i))) {
+            if (Character.isDigit(noSpace.charAt(i))) {
                 String token = ""; 
-                while (i < input.length() && Character.isDigit(input.charAt(currentSpot))) {
-                    token = token + input.charAt(currentSpot); 
+                while (i < noSpace.length() && Character.isDigit(noSpace.charAt(currentSpot))) {
+                    token = token + noSpace.charAt(currentSpot); 
                     currentSpot++;
                     if (currentSpot == noSpace.length()) {
                         break; 
@@ -35,7 +35,7 @@ public class update {
                 i = currentSpot - 1; 
                 output.add(token); 
             } else {
-                char oper = input.charAt(i); 
+                char oper = noSpace.charAt(i); 
                 if (!operations.isEmpty()) {
                     int topValue = Precedence.get(operations.peek()); 
                     while (topValue > Precedence.get(oper + "") && !operations.isEmpty()) { 
