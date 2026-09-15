@@ -70,7 +70,7 @@ public class update {
                             break; 
                         }
                         case "-" -> { 
-                            solver.push(unitOne - unitTwo);
+                            solver.push(unitTwo - unitOne);
                             break; 
                         }
                         case "*" -> {
@@ -78,7 +78,7 @@ public class update {
                             break; 
                         }
                         case "/" -> { 
-                            solver.push(unitOne / unitTwo); 
+                            solver.push(unitTwo / unitOne); 
                             break; 
                         } 
                     }
