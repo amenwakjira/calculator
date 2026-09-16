@@ -11,6 +11,7 @@ public class update {
         Precedence.put("-", 1); 
         Precedence.put("*", 2); 
         Precedence.put("/", 2); 
+        Precedence.put("(", -1); 
     }
     
     // using Shunting Yard Algorithm to get RPN form of inputed string. 
@@ -33,8 +34,15 @@ public class update {
                     }
                 }
                 i = currentSpot - 1; 
-                output.add(token); 
-            } else {
+                output.add(token);
+            } else if (noSpace.charAt(i) == '(') {
+               operations.add(noSpace.charAt(i) + ""); 
+            } else if (noSpace.charAt(i) == ')') {
+                while(!operations.peek().equals("(")) {
+                    output.add(operations.pop()); 
+                }
+                operations.pop(); 
+            }else {
                 char oper = noSpace.charAt(i); 
                 if (!operations.isEmpty()) {
                     int topValue = Precedence.get(operations.peek()); 

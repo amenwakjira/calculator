@@ -7,7 +7,6 @@ public class main {
         System.out.println("Welcome! Please enter your expression!"); 
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine(); 
-        System.out.println(update.RPN_Form(input)); 
 
         double answer = update.eval_RPN(update.RPN_Form(input)); 
         System.out.println(answer); 
