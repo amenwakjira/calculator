@@ -12,6 +12,7 @@ public class update {
         Precedence.put("*", 2); 
         Precedence.put("/", 2); 
         Precedence.put("(", -1); 
+        Precedence.put("^", 3); 
     }
     
     // using Shunting Yard Algorithm to get RPN form of inputed string. 
@@ -26,7 +27,7 @@ public class update {
             int currentSpot = i; 
             if (Character.isDigit(noSpace.charAt(i))) {
                 String token = ""; 
-                while (i < noSpace.length() && Character.isDigit(noSpace.charAt(currentSpot))) {
+                while (currentSpot < noSpace.length() && Character.isDigit(noSpace.charAt(currentSpot))) {
                     token = token + noSpace.charAt(currentSpot); 
                     currentSpot++;
                     if (currentSpot == noSpace.length()) {
@@ -42,7 +43,19 @@ public class update {
                     output.add(operations.pop()); 
                 }
                 operations.pop(); 
-            }else {
+            } else if (noSpace.charAt(i) == '-' && (i == 0 || noSpace.charAt(i - 1) == '(' || !Character.isDigit(noSpace.charAt(i - 1)))) {
+                String token = ""; 
+                currentSpot++;  
+                while (currentSpot < noSpace.length() && Character.isDigit(noSpace.charAt(currentSpot))) {
+                    token = token + noSpace.charAt(currentSpot); 
+                    currentSpot++;
+                    if (currentSpot == noSpace.length()) {
+                        break; 
+                    }
+                }
+                i = currentSpot - 1; 
+                output.add("-" + token);
+            } else {
                 char oper = noSpace.charAt(i); 
                 if (!operations.isEmpty()) {
                     int topValue = Precedence.get(operations.peek()); 
@@ -70,25 +83,38 @@ public class update {
                 solver.add(Double.parseDouble(rpn.poll()));
             } else {
                 if (!solver.isEmpty()) {
-                    double unitOne = solver.pop();
-                    double unitTwo = solver.pop(); 
+                    // double unitOne = solver.pop();
+                    // double unitTwo = solver.pop(); 
                     switch (rpn.poll()) {
                         case "+" -> { 
+                            double unitOne = solver.pop();
+                            double unitTwo = solver.pop(); 
                             solver.push(unitOne + unitTwo); 
                             break; 
                         }
                         case "-" -> { 
+                            double unitOne = solver.pop();
+                            double unitTwo = solver.pop();
                             solver.push(unitTwo - unitOne);
                             break; 
                         }
                         case "*" -> {
+                            double unitOne = solver.pop();
+                            double unitTwo = solver.pop(); 
                             solver.push(unitOne * unitTwo); 
                             break; 
                         }
                         case "/" -> { 
+                            double unitOne = solver.pop();
+                            double unitTwo = solver.pop(); 
                             solver.push(unitTwo / unitOne); 
                             break; 
                         } 
+                        case "^" -> {
+                            double unitOne = solver.pop(); 
+                            double unitTwo = solver.pop();
+                            solver.push(Math.pow(unitTwo, unitOne)); 
+                        }
                     }
                 }
             }
