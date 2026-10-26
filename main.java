@@ -7,17 +7,25 @@ public class main {
         System.out.println("Welcome! Enter Q to exit calculator! Please enter your expression!"); 
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
+        if (input.equals("X")) {
+            System.out.println("Goodbye!"); 
+            System.exit(0);
+        }
 
         while (!input.equals("Q")) { 
             double answer = update.eval_RPN(update.RPN_Form(input)); 
             System.out.println(answer); 
             System.out.println("Please enter your expression!"); 
             input = sc.nextLine();
+            if (input.equals("X")) {
+                System.out.println("Goodbye!"); 
+                break;
+            }
         }
         sc.close(); 
 
     //     System.out.println("r - Root");
-    //     System.out.println("Abs - Absolute Value"); 
+    //     System.out.println("Abs - Absolute Value"); done
     //     System.out.println("Mod - Modulo"); 
     //     System.out.println("Log - Logrithm (for ln, use -1 as input for base)"); 
     //     System.out.println("SIN - Sine");
