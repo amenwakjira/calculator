@@ -12,7 +12,8 @@ public class update {
         Precedence.put("*", 2); 
         Precedence.put("/", 2); 
         Precedence.put("(", -1); 
-        Precedence.put("^", 3); 
+        Precedence.put("|", -1);
+        Precedence.put("^", 3);
     }
     
     // using Shunting Yard Algorithm to get RPN form of inputed string. 
@@ -21,12 +22,19 @@ public class update {
         Queue<String> output = new LinkedList<>(); 
         // for operations
         Stack<String> operations = new Stack<>(); 
+        //get rid of spaces
         String noSpace = input.replaceAll("\\s+", ""); 
 
+        //counter for the number of |
+        int absCounter = 0; 
+
+        // looping through input
         for (int i = 0; i < noSpace.length(); i++) {
             int currentSpot = i; 
+            // if current character is a digit
             if (Character.isDigit(noSpace.charAt(i))) {
                 String token = ""; 
+                // while loop for multi-digit number inputs 
                 while (currentSpot < noSpace.length() && Character.isDigit(noSpace.charAt(currentSpot))) {
                     token = token + noSpace.charAt(currentSpot); 
                     currentSpot++;
@@ -35,14 +43,36 @@ public class update {
                     }
                 }
                 i = currentSpot - 1; 
+                // add number to the output queue
                 output.add(token);
             } else if (noSpace.charAt(i) == '(') {
+                //if it's a (, then add it to the operations stack
                operations.add(noSpace.charAt(i) + ""); 
             } else if (noSpace.charAt(i) == ')') {
+                // if it's a ), add everything in the operations stack to the output queue until we reach (
                 while(!operations.peek().equals("(")) {
                     output.add(operations.pop()); 
                 }
+                //remove (
                 operations.pop(); 
+            } else if (noSpace.charAt(i) == '|') {
+                //if it's a |, add to the counter for |
+                absCounter = absCounter + 1; 
+                // if the counter is an even number, add everything in operation stack to the output queue until |
+                if (absCounter % 2 == 0) {
+                    while (!operations.isEmpty() && !operations.peek().equals("|")) {
+                        output.add(operations.pop() + "");  
+                    } 
+
+                    // cover case that operations stack is empty
+                    if (operations.isEmpty()) {
+                        operations.add("|"); 
+                    }
+                } else {
+                    // if we have encountered only one |, then just add to the operations stack
+                    operations.add("|"); 
+                }
+            // handling negative inputs
             } else if (noSpace.charAt(i) == '-' && (i == 0 || noSpace.charAt(i - 1) == '(' || !Character.isDigit(noSpace.charAt(i - 1)))) {
                 String token = ""; 
                 currentSpot++;  
@@ -55,11 +85,17 @@ public class update {
                 }
                 i = currentSpot - 1; 
                 output.add("-" + token);
+            // handling operation
             } else {
                 char oper = noSpace.charAt(i); 
+                //disregarding precedence for |
+                if (!operations.isEmpty() && operations.peek().equals("|") && absCounter % 2 == 0) {
+                    output.add(operations.pop()); 
+                }
+                //comparing precedences to add to output queue from operations stack
                 if (!operations.isEmpty()) {
                     int topValue = Precedence.get(operations.peek()); 
-                    while (topValue > Precedence.get(oper + "") && !operations.isEmpty()) { 
+                    while (!operations.isEmpty() && topValue > Precedence.get(oper + "")) { 
                         topValue = Precedence.get(operations.peek()); 
                         output.add(operations.pop()); 
                     }
@@ -70,9 +106,11 @@ public class update {
             }
         }
 
+        // completing the move from stack to queue
         while (!operations.isEmpty()) {  
             output.add(operations.pop()); 
         }
+        System.out.println(output); 
         return output; 
     }
 
@@ -83,8 +121,6 @@ public class update {
                 solver.add(Double.parseDouble(rpn.poll()));
             } else {
                 if (!solver.isEmpty()) {
-                    // double unitOne = solver.pop();
-                    // double unitTwo = solver.pop(); 
                     switch (rpn.poll()) {
                         case "+" -> { 
                             double unitOne = solver.pop();
@@ -114,6 +150,10 @@ public class update {
                             double unitOne = solver.pop(); 
                             double unitTwo = solver.pop();
                             solver.push(Math.pow(unitTwo, unitOne)); 
+                        }
+                        case "|" -> {
+                            Double unit = solver.pop(); 
+                            solver.push(Math.abs(unit)); 
                         }
                     }
                 }
