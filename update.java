@@ -56,22 +56,24 @@ public class update {
                 //remove (
                 operations.pop(); 
             } else if (noSpace.charAt(i) == '|') {
-                //if it's a |, add to the counter for |
-                absCounter = absCounter + 1; 
-                // if the counter is an even number, add everything in operation stack to the output queue until |
-                if (absCounter % 2 == 0) {
-                    while (!operations.isEmpty() && !operations.peek().equals("|")) {
-                        output.add(operations.pop() + "");  
-                    } 
-
-                    // cover case that operations stack is empty
-                    if (operations.isEmpty()) {
-                        operations.add("|"); 
+                //if it's the first character, add to operations
+                if (i == 0) {
+                    operations.add("|"); 
+                } else if (i > 0 && (Character.isDigit(noSpace.charAt(i-1)) || noSpace.charAt(i-1) == '|')) {
+                    // if not and it's the closing abs, move all elements up until the opening abs in the operations stack to the output queue
+                    while (!operations.peek().equals("|")) {
+                        output.add(operations.pop()); 
                     }
+                    // move opening abs to output queue as well
+                    output.add(operations.pop()); 
+                    // System.out.println("output: " + output); 
                 } else {
-                    // if we have encountered only one |, then just add to the operations stack
+                    // if it's an opening abs just move it to operations stack
                     operations.add("|"); 
                 }
+                // System.out.println("output: " + output); 
+                // System.out.println("ops: " + operations);
+                // System.out.println();  
             // handling negative inputs
             } else if (noSpace.charAt(i) == '-' && (i == 0 || noSpace.charAt(i - 1) == '(' || !Character.isDigit(noSpace.charAt(i - 1)))) {
                 String token = ""; 
@@ -88,14 +90,10 @@ public class update {
             // handling operation
             } else {
                 char oper = noSpace.charAt(i); 
-                //disregarding precedence for |
-                if (!operations.isEmpty() && operations.peek().equals("|") && absCounter % 2 == 0) {
-                    output.add(operations.pop()); 
-                }
-                //comparing precedences to add to output queue from operations stack
+
                 if (!operations.isEmpty()) {
                     int topValue = Precedence.get(operations.peek()); 
-                    while (!operations.isEmpty() && topValue > Precedence.get(oper + "")) { 
+                    while (!operations.isEmpty() && topValue >= Precedence.get(oper + "")) { 
                         topValue = Precedence.get(operations.peek()); 
                         output.add(operations.pop()); 
                     }
@@ -103,6 +101,9 @@ public class update {
                 } else {
                     operations.add(oper + ""); 
                 }
+                // System.out.println("output: " + output); 
+                // System.out.println("ops: " + operations); 
+                // System.out.println();
             }
         }
 
