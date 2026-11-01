@@ -25,14 +25,15 @@ public class update {
         //get rid of spaces
         String noSpace = input.replaceAll("\\s+", ""); 
 
-        //counter for the number of |
-        int absCounter = 0; 
+        // boolean for expecting operands
+        boolean operandExpected = true; 
 
         // looping through input
         for (int i = 0; i < noSpace.length(); i++) {
             int currentSpot = i; 
             // if current character is a digit
             if (Character.isDigit(noSpace.charAt(i))) {
+                operandExpected = false; // no more operands needed 
                 String token = ""; 
                 // while loop for multi-digit number inputs 
                 while (currentSpot < noSpace.length() && Character.isDigit(noSpace.charAt(currentSpot))) {
@@ -47,8 +48,10 @@ public class update {
                 output.add(token);
             } else if (noSpace.charAt(i) == '(') {
                 //if it's a (, then add it to the operations stack
-               operations.add(noSpace.charAt(i) + ""); 
+                operandExpected = true;  // operands needed for opening parenthesis 
+                operations.add(noSpace.charAt(i) + ""); 
             } else if (noSpace.charAt(i) == ')') {
+                operandExpected = false; //finsihed with parenthesis so done with operands
                 // if it's a ), add everything in the operations stack to the output queue until we reach (
                 while(!operations.peek().equals("(")) {
                     output.add(operations.pop()); 
@@ -56,26 +59,26 @@ public class update {
                 //remove (
                 operations.pop(); 
             } else if (noSpace.charAt(i) == '|') {
-                //if it's the first character, add to operations
-                if (i == 0) {
+                //for opening abs, add to operations
+                if (operandExpected) {
+                    operandExpected = true; 
                     operations.add("|"); 
-                } else if (i > 0 && (Character.isDigit(noSpace.charAt(i-1)) || noSpace.charAt(i-1) == '|')) {
-                    // if not and it's the closing abs, move all elements up until the opening abs in the operations stack to the output queue
+                } else {
+                   // if closing abs, move all elements up until the opening abs in the operations stack to the output queue
                     while (!operations.peek().equals("|")) {
                         output.add(operations.pop()); 
                     }
                     // move opening abs to output queue as well
                     output.add(operations.pop()); 
+                    operandExpected = false; 
                     // System.out.println("output: " + output); 
-                } else {
-                    // if it's an opening abs just move it to operations stack
-                    operations.add("|"); 
-                }
+                } 
                 // System.out.println("output: " + output); 
                 // System.out.println("ops: " + operations);
                 // System.out.println();  
             // handling negative inputs
             } else if (noSpace.charAt(i) == '-' && (i == 0 || noSpace.charAt(i - 1) == '(' || !Character.isDigit(noSpace.charAt(i - 1)))) {
+                operandExpected = true; // operand expected in order to consider negative
                 String token = ""; 
                 currentSpot++;  
                 while (currentSpot < noSpace.length() && Character.isDigit(noSpace.charAt(currentSpot))) {
@@ -87,15 +90,19 @@ public class update {
                 }
                 i = currentSpot - 1; 
                 output.add("-" + token);
+                operandExpected = false; // operand no longer expected after input of negative number
             // handling operation
             } else {
+                operandExpected = true; // operand expected to complete operation
                 char oper = noSpace.charAt(i); 
 
                 if (!operations.isEmpty()) {
                     int topValue = Precedence.get(operations.peek()); 
                     while (!operations.isEmpty() && topValue >= Precedence.get(oper + "")) { 
-                        topValue = Precedence.get(operations.peek()); 
                         output.add(operations.pop()); 
+                        if (!operations.isEmpty()) {
+                            topValue = Precedence.get(operations.peek()); 
+                        }
                     }
                     operations.add(oper + "");
                 } else {
@@ -105,6 +112,10 @@ public class update {
                 // System.out.println("ops: " + operations); 
                 // System.out.println();
             }
+        }
+
+        if (operandExpected) {
+            System.out.println("Unfinished Expression. Try Again."); 
         }
 
         // completing the move from stack to queue
