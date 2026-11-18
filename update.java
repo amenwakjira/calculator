@@ -77,7 +77,7 @@ public class update {
                 // System.out.println("ops: " + operations);
                 // System.out.println();  
             // handling negative inputs
-            } else if (noSpace.charAt(i) == '-' && (i == 0 || noSpace.charAt(i - 1) == '(' || !Character.isDigit(noSpace.charAt(i - 1)))) {
+            } else if (noSpace.charAt(i) == '-' && operandExpected) {
                 operandExpected = true; // operand expected in order to consider negative
                 String token = ""; 
                 currentSpot++;  
@@ -94,20 +94,14 @@ public class update {
             // handling operation
             } else {
                 operandExpected = true; // operand expected to complete operation
-                char oper = noSpace.charAt(i); 
+                char oper = noSpace.charAt(i); // inputted operation
 
-                if (!operations.isEmpty()) {
-                    int topValue = Precedence.get(operations.peek()); 
-                    while (!operations.isEmpty() && topValue >= Precedence.get(oper + "")) { 
-                        output.add(operations.pop()); 
-                        if (!operations.isEmpty()) {
-                            topValue = Precedence.get(operations.peek()); 
-                        }
-                    }
-                    operations.add(oper + "");
-                } else {
-                    operations.add(oper + ""); 
+                // adding to rpn
+                while (!operations.isEmpty() && Precedence.get(operations.peek()) >= Precedence.get(oper + "")) {
+                    output.add(operations.pop());
                 }
+                operations.add(oper + "");
+
                 // System.out.println("output: " + output); 
                 // System.out.println("ops: " + operations); 
                 // System.out.println();
