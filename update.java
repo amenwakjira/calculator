@@ -92,6 +92,48 @@ public class update {
                 output.add("-" + token);
                 operandExpected = false; // operand no longer expected after input of negative number
             // handling operation
+            } else if (noSpace.charAt(i) == 's') {
+                operandExpected = true; 
+                operations.add("root"); 
+                
+                while (noSpace.charAt(i+1) != ')') {
+                    i = i + 1; 
+                    if (noSpace.charAt(i) == '(') {
+                        continue;
+                    } else if (Character.isDigit(noSpace.charAt(i))) {
+                        // multi-digit input handling
+                        String token = noSpace.charAt(i) + ""; 
+                        while (i != noSpace.length()-1 && Character.isDigit(noSpace.charAt(i+1))) {
+                            token = token + noSpace.charAt(i+1); 
+                            i = i + 1; 
+                        }
+                        output.add(token); 
+                        System.out.println("nums " + operations); 
+                        System.out.println("nums " + output); 
+                    } else {
+                        if (operations.peek().equals("root")) {
+                            operations.add(noSpace.charAt(i) + ""); 
+                            System.out.println("root top of op " + operations); 
+                            System.out.println("root top of op " + output); 
+                        } else {
+                            while (!operations.isEmpty() && Precedence.get(operations.peek()) >= Precedence.get(noSpace.charAt(i) + "")) {
+                                output.add(operations.pop()); 
+                            }
+                            System.out.println("root NOT top of op " + operations); 
+                            System.out.println("root NOT top of op " + output); 
+                            operations.add(noSpace.charAt(i) + ""); 
+                        }
+                    }
+                }
+
+                while (!operations.peek().equals("root")) {
+                    output.add(operations.pop()); 
+                    
+                }
+                output.add(operations.pop()); 
+                i = i + 1; 
+                operandExpected = false; 
+
             } else {
                 operandExpected = true; // operand expected to complete operation
                 char oper = noSpace.charAt(i); // inputted operation
@@ -160,6 +202,10 @@ public class update {
                         case "|" -> {
                             Double unit = solver.pop(); 
                             solver.push(Math.abs(unit)); 
+                        } 
+                        case "root" -> {
+                            Double unit = solver.pop(); 
+                            solver.push(Math.sqrt(unit)); 
                         }
                     }
                 }
